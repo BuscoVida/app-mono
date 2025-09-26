@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import type { Schema } from "../../amplify/data/resource";
+import type { Schema } from "../../../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import {
   IonContent,
@@ -32,7 +32,7 @@ export default function Home() {
 
   const loadProfile = async () => {
     try {
-      const { data: profiles } = await client.models.UserProfile.list();
+      const { data: profiles } = await client.models.UserProfile.list({});
       if (profiles.length > 0) {
         setProfile(profiles[0]);
       }
@@ -61,8 +61,7 @@ export default function Home() {
 
   const navigateToCapture = () => {
     setIsMenuActionSheetOpen(false);
-    // TODO: Navigate to capture page
-    console.log('Navigate to Capture');
+    history.push("/capture");
   };
 
   const navigateToMyFinds = () => {
@@ -157,7 +156,6 @@ export default function Home() {
         <IonActionSheet
           isOpen={isMenuActionSheetOpen}
           onDidDismiss={() => setIsMenuActionSheetOpen(false)}
-          header="BuscoVida Menu"
           buttons={[
             {
               text: 'Capture',

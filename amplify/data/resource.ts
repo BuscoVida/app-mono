@@ -19,6 +19,19 @@ const schema = a.schema({
       avatarUrl: a.string(),
     })
     .authorization((allow) => [allow.owner()]),
+
+  Find: a
+    .model({
+      name: a.string().required(),
+      description: a.string(),
+      imageUrl: a.string().required(),
+      latitude: a.float(),
+      longitude: a.float(),
+      capturedAt: a.datetime().required(),
+      category: a.enum(["plant", "animal", "not_sure"]),
+      isSynced: a.boolean().default(false),
+    })
+    .authorization((allow) => [allow.owner()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;

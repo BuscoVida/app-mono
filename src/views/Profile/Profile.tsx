@@ -2,12 +2,9 @@ import { useState, useEffect } from "react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { updatePassword } from "aws-amplify/auth";
-import type { Schema } from "../../amplify/data/resource";
+import type { Schema } from "../../../amplify/data/resource";
 import {
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
   IonButton,
   IonItem,
   IonLabel,
@@ -20,13 +17,12 @@ import {
   IonIcon,
   IonAlert,
   IonLoading,
-  IonBackButton,
-  IonButtons,
   IonAccordion,
   IonAccordionGroup,
   IonActionSheet,
 } from "@ionic/react";
-import { person, save, key, camera, image, link, menu, location, list } from "ionicons/icons";
+import { person, save, key, camera, image, link } from "ionicons/icons";
+import DetailHeader from "../../components/DetailHeader";
 import "./Profile.scss";
 
 const client = generateClient<Schema>();
@@ -45,7 +41,6 @@ export default function Profile() {
   const [alertMessage, setAlertMessage] = useState("");
   const [isAvatarActionSheetOpen, setIsAvatarActionSheetOpen] = useState(false);
   const [showAvatarUrlAlert, setShowAvatarUrlAlert] = useState(false);
-  const [isMenuActionSheetOpen, setIsMenuActionSheetOpen] = useState(false);
 
   useEffect(() => {
     loadProfile();
@@ -53,7 +48,7 @@ export default function Profile() {
 
   const loadProfile = async () => {
     try {
-      const { data: profiles } = await client.models.UserProfile.list();
+      const { data: profiles } = await client.models.UserProfile.list({});
       if (profiles.length > 0) {
         const userProfile = profiles[0];
         setProfile(userProfile);
@@ -172,41 +167,10 @@ export default function Profile() {
     }
   };
 
-  const showMenuActionSheet = () => {
-    setIsMenuActionSheetOpen(true);
-  };
-
-  const navigateToCapture = () => {
-    setIsMenuActionSheetOpen(false);
-    // TODO: Navigate to capture page
-    console.log('Navigate to Capture');
-  };
-
-  const navigateToMyFinds = () => {
-    setIsMenuActionSheetOpen(false);
-    // TODO: Navigate to my finds page
-    console.log('Navigate to My Finds');
-  };
-
-  const navigateToFindsMap = () => {
-    setIsMenuActionSheetOpen(false);
-    // TODO: Navigate to finds map page
-    console.log('Navigate to Finds Map');
-  };
 
   return (
     <>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton defaultHref="/" text=""></IonBackButton>
-            <IonButton fill="clear" onClick={showMenuActionSheet}>
-              <IonIcon icon={menu} className="icon-spacing" />
-            </IonButton>
-          </IonButtons>
-          <IonTitle>Profile</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <DetailHeader title="Profile" />
 
       <IonContent className="ion-padding">
         <IonCard className="card-full-width">
@@ -379,28 +343,6 @@ export default function Profile() {
           ]}
         />
 
-        <IonActionSheet
-          isOpen={isMenuActionSheetOpen}
-          onDidDismiss={() => setIsMenuActionSheetOpen(false)}
-          header="BuscoVida Menu"
-          buttons={[
-            {
-              text: 'Capture',
-              icon: camera,
-              handler: navigateToCapture
-            },
-            {
-              text: 'My Finds',
-              icon: list,
-              handler: navigateToMyFinds
-            },
-            {
-              text: 'Finds Map',
-              icon: location,
-              handler: navigateToFindsMap
-            }
-          ]}
-        />
       </IonContent>
     </>
   );
