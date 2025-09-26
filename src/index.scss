@@ -1,0 +1,214 @@
+/* SCSS variables for better maintainability - Nature Green Theme */
+$primary-color: rgb(46, 125, 50); // Forest green - main brand color
+$primary-color-rgb: 46, 125, 50;
+$primary-contrast: #ffffff;
+$primary-contrast-rgb: 255, 255, 255;
+$primary-shade: #2e7d32; // Darker forest green
+$primary-tint: #66bb6a; // Lighter forest green
+
+// Additional nature colors
+$secondary-color: rgb(102, 187, 106); // Fresh green
+$secondary-color-rgb: 102, 187, 106;
+$accent-color: rgb(139, 69, 19); // Earthy brown
+$accent-color-rgb: 139, 69, 19;
+$leaf-color: rgb(76, 175, 80); // Vibrant leaf green
+$bark-color: rgb(121, 85, 72); // Tree bark brown
+
+$font-family:
+  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+  sans-serif;
+
+/* Spacing variables */
+$card-spacing: 16px;
+
+/* Background colors */
+$card-background: white;
+$content-background: #f1f8e9;
+
+/* Button colors */
+$primary-button-color: #388e3c;
+$secondary-button-color: #4caf50;
+
+/* Custom styles for the Ionic mobile app */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: $font-family;
+}
+
+/* Ionic variables for theming - Nature Green Theme */
+:root {
+  // Primary color (Darker Vibrant Green) - Force override
+  --ion-color-primary: #388e3c !important;
+  --ion-color-primary-rgb: 56, 142, 60 !important;
+  --ion-color-primary-contrast: #ffffff !important;
+  --ion-color-primary-contrast-rgb: 255, 255, 255 !important;
+  --ion-color-primary-shade: #388e3c !important;
+  --ion-color-primary-tint: #66bb6a !important;
+
+  // Secondary color (Fresh Green) - used for buttons and accents
+  --ion-color-secondary: #{$secondary-color};
+  --ion-color-secondary-rgb: #{$secondary-color-rgb};
+  --ion-color-secondary-contrast: #{$primary-contrast};
+  --ion-color-secondary-contrast-rgb: #{$primary-contrast-rgb};
+  --ion-color-secondary-shade: #5a9a5e;
+  --ion-color-secondary-tint: #81c784;
+
+  // Success color (Vibrant Leaf Green)
+  --ion-color-success: #{$leaf-color};
+  --ion-color-success-rgb: #{$leaf-color};
+  --ion-color-success-contrast: #{$primary-contrast};
+  --ion-color-success-contrast-rgb: #{$primary-contrast-rgb};
+  --ion-color-success-shade: #4caf50;
+  --ion-color-success-tint: #8bc34a;
+
+  // Custom nature colors for app use
+  --nature-accent: #{$accent-color};
+  --nature-bark: #{$bark-color};
+  --nature-leaf: #{$leaf-color};
+}
+
+/* Ensure the app takes full height */
+#root {
+  height: 100vh;
+}
+
+/* Custom styles for the authenticator to work well with Ionic */
+.amplify-authenticator {
+  height: 100vh;
+  --amplify-components-authenticator-router-background-color: var(
+    --ion-color-light
+  );
+}
+
+/* Ensure the app content doesn't have conflicting styles */
+ion-content {
+  --background: #{$content-background} !important;
+}
+
+/* Clean up - no extra bottom padding needed since cards have their own margins */
+
+/* Shared utility classes */
+.card-margin-top {
+  margin-top: $card-spacing;
+}
+
+.card-full-width {
+  margin: 0;
+}
+
+.icon-spacing {
+  margin-right: 8px;
+}
+
+.card-background {
+  background: #{$card-background} !important;
+}
+
+/* Global button styling */
+.btn-primary {
+  --background: #{$primary-button-color} !important;
+  --color: white !important;
+}
+
+.btn-secondary {
+  --background: #{$secondary-button-color} !important;
+  --color: white !important;
+}
+
+/* Aggressive nature theme override with variation */
+ion-toolbar {
+  --background: #388e3c !important; /* Darker vibrant green for headers */
+  --color: white !important;
+}
+
+ion-header ion-toolbar {
+  --background: #388e3c !important; /* Darker vibrant green for headers */
+  --color: white !important;
+}
+
+ion-button[color="secondary"] {
+  --background: #{$secondary-button-color} !important;
+  --color: white !important;
+}
+
+/* Force secondary color override */
+:root {
+  --ion-color-secondary: #{$secondary-button-color} !important;
+  --ion-color-secondary-rgb: 76, 175, 80 !important;
+  --ion-color-secondary-contrast: #ffffff !important;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255 !important;
+  --ion-color-secondary-shade: #43a047 !important;
+  --ion-color-secondary-tint: #66bb6a !important;
+}
+
+ion-button[fill="clear"][color="secondary"] {
+  --color: #388e3c !important; /* Darker green for clear buttons */
+}
+
+/* Make avatar placeholders match the header color */
+.profile__avatar-placeholder,
+.home__avatar-placeholder {
+  background: #388e3c !important; /* Match header color for avatars */
+  color: white !important;
+}
+
+/* Override Ionic's default blue primary with darker green */
+ion-button:not([color]) {
+  --background: #{$primary-button-color} !important;
+  --color: white !important;
+}
+
+/* Fix all button colors that might be using old blue */
+ion-button {
+  --background: #{$primary-button-color} !important;
+  --color: white !important;
+
+  &[color="secondary"] {
+    --background: #{$secondary-button-color} !important;
+    --color: white !important;
+  }
+}
+
+/* Specific fix for Profile component buttons */
+.profile__password-button {
+  --background: #{$secondary-button-color} !important;
+  --color: white !important;
+}
+
+/* Action sheet styling */
+ion-action-sheet .action-sheet-button {
+  color: #2e7d32 !important;
+}
+
+/* Make sure icons use the right colors */
+ion-icon {
+  color: inherit !important;
+}
+
+/* Fix back button visibility and styling */
+ion-back-button {
+  --color: white !important;
+  --icon-font-size: 1.5rem !important;
+  --padding-start: 12px !important;
+}
+
+ion-header ion-back-button {
+  --color: white !important;
+  --padding-start: 12px !important;
+}
+
+/* Make accordion background match cards */
+ion-accordion-group {
+  background: #{$card-background} !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  margin-bottom: 40px !important;
+}
+
+ion-accordion {
+  background: #{$card-background} !important;
+}
