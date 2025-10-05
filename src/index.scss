@@ -20,6 +20,7 @@ $font-family:
 
 /* Spacing variables */
 $card-spacing: 16px;
+$content-margin: 15px;
 
 /* Background colors */
 $card-background: white;
@@ -76,20 +77,16 @@ body {
   height: 100vh;
 }
 
-/* Custom styles for the authenticator to work well with Ionic */
-.amplify-authenticator {
-  height: 100vh;
-  --amplify-components-authenticator-router-background-color: var(
-    --ion-color-light
-  );
+/* Fix the space around the blue border container */
+body {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Ensure the app content doesn't have conflicting styles */
 ion-content {
   --background: #{$content-background} !important;
 }
-
-/* Clean up - no extra bottom padding needed since cards have their own margins */
 
 /* Shared utility classes */
 .card-margin-top {
@@ -106,6 +103,16 @@ ion-content {
 
 .card-background {
   background: #{$card-background} !important;
+}
+
+.content-padding {
+  padding-left: $content-margin;
+  padding-right: $content-margin;
+}
+
+.content-margin-horizontal {
+  margin-left: $content-margin;
+  margin-right: $content-margin;
 }
 
 /* Global button styling */

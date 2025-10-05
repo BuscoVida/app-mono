@@ -1,0 +1,110 @@
+/* Auth header styling */
+.auth-header {
+  background: #388e3c !important;
+  color: white !important;
+  padding: 1rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin-bottom: 0 !important;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+/* Force no gap in IonApp when showing authenticator */
+ion-app {
+  > .auth-header + .amplify-authenticator {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+/* Hide auth header when authenticated (when inside app pages) */
+ion-router-outlet + .auth-header {
+  display: none;
+}
+
+/* Auth container styling - exact match to working inline styles */
+.auth-container {
+  height: calc(100vh - 72px);
+  background: #f1f8e9;
+  padding-top: 20px;
+  /* NO display: flex - this was breaking it! */
+}
+
+/* Custom styles for the authenticator to work well with Ionic */
+.amplify-authenticator {
+  height: calc(100vh - 92px) !important; /* Explicit height */
+  background: #f1f8e9 !important; /* Match content background */
+  margin: 0 !important;
+  padding: 0 !important;
+
+  /* Apply nature green theme to authenticator components */
+  --amplify-components-authenticator-router-background-color: #f1f8e9 !important;
+  --amplify-colors-background-primary: #f1f8e9 !important;
+  --amplify-colors-background-secondary: #ffffff !important;
+
+  /* Apply green theme to buttons - more specific targeting */
+  --amplify-colors-brand-primary-10: #e8f5e8 !important;
+  --amplify-colors-brand-primary-20: #c8e6c9 !important;
+  --amplify-colors-brand-primary-40: #81c784 !important;
+  --amplify-colors-brand-primary-60: #4caf50 !important;
+  --amplify-colors-brand-primary-80: #388e3c !important;
+  --amplify-colors-brand-primary-90: #2e7d32 !important;
+  --amplify-colors-brand-primary-100: #1b5e20 !important;
+
+  /* Center the form */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Input field styling - more specific */
+.amplify-authenticator .amplify-input,
+.amplify-authenticator .amplify-field-control__input {
+  border-color: #c8e6c9 !important;
+}
+
+/* AMPLIFY OVERRIDES - Must be at the end to override Amplify's CSS */
+/* Universal button override for Amplify */
+div[data-amplify-authenticator] button,
+div[data-amplify-authenticator] [class*="button"] {
+  background: #388e3c !important;
+  border-color: #388e3c !important;
+  color: white !important;
+
+  &:hover,
+  &:focus {
+    background: #2e7d32 !important;
+    border-color: #2e7d32 !important;
+  }
+}
+
+/* Universal background override */
+div[data-amplify-authenticator] {
+  background: #f1f8e9 !important;
+
+  /* Target any nested containers */
+  > div {
+    background: #f1f8e9 !important;
+  }
+
+  /* Target form containers */
+  form,
+  [class*="form"] {
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding-left: 1.6rem !important;
+    padding-right: 1.6rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    margin: 0 !important;
+  }
+}

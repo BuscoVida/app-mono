@@ -172,7 +172,7 @@ export default function Profile() {
     <>
       <DetailHeader title="Profile" />
 
-      <IonContent className="ion-padding">
+      <IonContent className="content-padding">
         <IonCard className="card-full-width">
           <IonCardHeader>
             <IonCardTitle>
